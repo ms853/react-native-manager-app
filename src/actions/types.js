@@ -8,3 +8,5 @@ export const LOGIN_USER = 'login_user'; //This action type variable will indicat
 export const EMPLOYEE_UPDATE = 'employee_updated'; 
 export const EMPLOYEE_CREATE = 'employee_created'; 
 export const EMPLOYEE_FETCH_SUCCESS = 'employee_data_succefully_fetched';
+export const EMPLOYEE_SAVED = "employeee_data_successfully_updated";
+export const EMPLOYEE_DELETED = "employee_successfully_deleted";

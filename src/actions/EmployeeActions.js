@@ -1,7 +1,13 @@
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_FETCH_SUCCESS } from './types';
+import { 
+    EMPLOYEE_UPDATE, 
+    EMPLOYEE_CREATE, 
+    EMPLOYEE_FETCH_SUCCESS,
+    EMPLOYEE_SAVED,
+    EMPLOYEE_DELETED 
+} from './types';
 import firebase from "firebase";
 import { Actions } from "react-native-router-flux";
-import { DataSnapshot } from '@firebase/database';
+
 
 //This method will take an object, which will have the key and value property
 export const employeeUpdate = ({ prop, value }) => {
@@ -47,3 +53,35 @@ export const fetchEmployeeData = () => {
     };
 };
 
+export const employeeSave = ({ name, phone, shift, uid}) => {
+
+    const db = firebase.database();
+    const { currentUser } = firebase.auth();
+
+    return(dispatch) => {
+        db.ref(`/users/${currentUser.uid}/employees/${uid}`)
+        .set({ name, phone, shift }).then(() => {
+            dispatch({type: EMPLOYEE_SAVED})
+            Actions.pop({type: 'reset'});
+            alert('Employee Information has been saved!');
+            
+        })
+        .catch((error) => {
+            alert(error);
+        })
+    }
+}
+
+export const deleteEmployee = ({uid}) => {
+    const userId = firebase.auth().currentUser.uid;
+    const db = firebase.database();
+    
+    return(dispatch) => {
+        db.ref(`/users/${userId}/employees/${uid}`)
+        .remove()
+        .then(() => {
+            dispatch({type: EMPLOYEE_DELETED})
+            Actions.pop({ype: 'reset'})
+        });
+    }
+}
