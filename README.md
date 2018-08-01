@@ -1,2 +1,8 @@
 # react-native-manager-app
-My personal project - manager app that allows managers to add and delete employee's. Currently still in development. 
+My personal project I developed this alongside studying the react-native course on Udemy, taught by Instructor Stephen Grider. 
+
+#About the app
+It is a mobile application, that allows managers to add their employees to the app. The main functionalities right now are the CRUD functions - create, read, update and delete employee information. 
+In addition, Managers the shifts assigned to the employees to the employee. 
+
+ 
